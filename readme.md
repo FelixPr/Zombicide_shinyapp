@@ -4,7 +4,7 @@ A shiny app helping Zombicide players to choose the best equipment:
 https://felixpr.shinyapps.io/ZombieApp/
 
 ## Do you like board games?
-I do! And one of my favorite is Zombicide. You don't know this game? If you like collaborative strategic games and nice miniatures, you should check it [here!](https://zombicide.com/en/) I personnaly prefer the Black Plague version. That's why I'm going to talk about swords and bows, and not about contemporary weapons. 
+I do! And one of my favorite is Zombicide. You don't know this game? If you like collaborative strategic games and nice miniatures, you should check it [here!](https://zombicide.com/en/) I personnaly prefer the medieval version called *Black Plague*. That's why I'm going to talk about swords and bows, and not about contemporary weapons. 
 
 In this game, you play survivors who try killing zombies. Rules are simple: when you attack, **you roll a few dices** and **you kill** a zombie **for every dice which gets the minimum score needed.** The number of dices and the needed score depend on your equipment and your survivors' abilities. At some point, you get new weapons, new abilities, and you start wondering if you should use this longbow you just found or if the crossbow is still more effective...
 
@@ -23,6 +23,8 @@ For example, 2 dices and 3 or more needed, that I'll write "2/3+", gives *2x4 = 
 And if you want something more concrete, you divide by 6 and you get the average kills you can expect (8/6 = 1.25, 6/6 = 1 and 9/6 = 1.33 for our example).
 
 That said, if you want to compare very different attacks, don't forget to include everything. For example, your sword can be more effective but you'll need 1 action to get closer to zombies and you'll have 2 actions left to attack. If you don't move and you use your bow instead, you can spend your 3 actions shooting undeads. In thid case, you should multiply the sword's score by 2 and the bow's score by 3 to make the right choice...
+
+There are still cases that are a bit more complex. For example, when there is only a few zombies in the area, it becomes less interesting to roll a lot dices and precision becomes more important. No need to say that precision is also very important when you try shooting zombies that are fighting  friends of yours (yes, you can do so in the *Black Plague* version). Another complex situation is when you can reroll... That's why we may need to do the math from time to time.
 
 ## Let's do the math
 work in progress
