@@ -8,7 +8,7 @@ shinyUI(fluidPage(
   # Application title
   titlePanel("Zombicide"),
   
-  # Sidebar with a slider input for the number of bins
+  # Sidebar
   sidebarLayout(
     sidebarPanel(
       helpText("1/ Sélectionne les caractéristiques de ton attaque :"),
@@ -22,7 +22,7 @@ shinyUI(fluidPage(
                    c("6+" = 6, "5+"=5, "4+"=4, "3+"=3, "2+"=2)),
       helpText("Tu n'as pas beaucoup de zombies à portée ? 
                Sélectionne le nombre de zombies max :"),
-      numericInput("zombiesDispo",
+      numericInput("avbZombies",
                   "Zombies sur la case ciblée :",
                   min = 1,
                   max = 50,
@@ -39,7 +39,7 @@ shinyUI(fluidPage(
                    c("6+" = 6, "5+"=5, "4+"=4, "3+"=3, "2+"=2))
       
   ),
-    # Show a plot of the generated distribution
+    # Show the histogram
     mainPanel(
       plotOutput("histPlot")
     )
