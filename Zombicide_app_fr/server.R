@@ -90,7 +90,7 @@ shinyServer(function(input, output) {
     dat <- data.frame(probability, zombie_kills, attack)
     
     # draw the histogram
-    if (n2!=0) {  # if there's no 2nd attack
+    if (n2!=0) {  # if there're 2 attacks
       d1 <- ggplot(data=dat, aes(x=zombie_kills, y=probability, fill=attack, label = percent(probability))) +
         geom_bar(stat="identity", position=position_dodge(), width=.8) + 
         geom_text(aes(y = probability + 0.02), position = position_dodge(0.8), size=3) +
@@ -106,7 +106,7 @@ shinyServer(function(input, output) {
         xlab("Zombies tués") + 
         ylab("Probabilités")
     }
-    else { # now there's a 2nd attack
+    else { # now there's only one attack
       d1 <- ggplot(data=dat[dat$attack==1, ], aes(x=zombie_kills, y=probability, fill=attack, label = percent(probability))) +
         geom_bar(stat="identity", position=position_dodge(), width=.8) + 
         geom_text(aes(y = probability + 0.02), position = position_dodge(0.8), size=3) +
