@@ -22,7 +22,7 @@ First you **calculate the number of faces that give you a hit** for one die. If 
 For example, 2 dice and 3 or more needed, that I'll write "2/3+", gives *2x4 = _8_*. It beats 3/5+ which gives *3x2 = _6_*, but 3/4+ is the best (*3x3 = 9*). Really easy!
 And if you want something more concrete, you divide by 6 and you get the average kills you can expect (8/6 = 1.25, 6/6 = 1 and 9/6 = 1.33 for our example).
 
-That said, if you want to compare very different attacks, don't forget to include everything. For example, your sword can be more effective but you'll need 1 action to get closer to zombies and you'll have 2 actions left to attack. If you don't move and you use your bow instead, you can spend your 3 actions shooting undeads. In thid case, you should multiply the sword's score by 2 and the bow's score by 3 to make the right choice...
+That said, if you want to compare very different attacks, don't forget to include everything. For example, your sword can be more effective but you'll need 1 action to get closer to zombies and you'll have 2 actions left for the attack. If you don't move and you use your bow instead, you can spend your 3 actions shooting undeads. In thid case, you should multiply the sword's score by 2 and the bow's score by 3 to make the right choice...
 
 There are still cases that are a bit more complex. For example, when there is only a few zombies in the area, it becomes less interesting to roll a lot of dice and precision becomes more important. No need to say that precision is also very important when you try shooting zombies that are fighting  friends of yours (yes, you can do so in the *Black Plague* version). Another complex situation is when you can reroll... That's why we may need to do the math from time to time.
 
