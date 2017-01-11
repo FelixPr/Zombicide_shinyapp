@@ -34,9 +34,7 @@ There are still cases that are a bit more complex. For example, when there is on
 ## Let's do the math
 Do you know [Jacob Bernoulli?](https://en.wikipedia.org/wiki/Jacob_Bernoulli "Check on Wikipedia") He work on our problem in the XVIIe century. No kidding!
 
-Every die-roll is what mathematicians call a [Bernoulli trial](https://en.wikipedia.org/wiki/Bernoulli_trial "Check on Wikipedia"), i.e. a random experiment with two possible outcomes: success or failure. In zombicide, a success means you kill a zombie and it occurs when you get more than the precision of your weapon, or equal. The probability of success is given by the number of winning faces *(7-precision)* divided by 6, the total number of faces:
-
-   **probability(success) = (7 - precision) / 6**
+Every die-roll is what mathematicians call a [Bernoulli trial](https://en.wikipedia.org/wiki/Bernoulli_trial "Check on Wikipedia"), i.e. a random experiment with two possible outcomes: success or failure. In zombicide, a success means you kill a zombie and it occurs when you get more than the precision of your weapon, or equal. The probability of success is given by the number of winning faces *(7-precision)* divided by 6, the total number of faces: *probability(success) = (7 - precision) / 6*
    
 
 When you roll a few dice, you have what mathematicians call a [Bernoulli process](https://en.wikipedia.org/wiki/Bernoulli_process "Check on Wikipedia"). The probability to get exactly *k* successes among *n* trials with a *p* success probability is:
@@ -59,14 +57,14 @@ Then we can easily take into account the maximum number of zombies you can kill.
 Then, I compare the score I got and the average killed zombies. If I'm above, I'm lucky and I keep it. If I'm not, I reroll, and I get another chance to get above average.
 Let's write *BL = probability_no_reroll(z < average_z)*, where BL stands for Bad Luck. If I get *bad_z < average_z* after reroll, it means I wasn't lucky with the first roll AND I got *bad_z* when I rerolled: 
 
-   **probability_reroll(z | z < average_z) = BL x probability_no_reroll(z)**
+   **probability_reroll(bad_z | bad_z < average_z) = BL x probability_no_reroll(bad_z)**
    
 
 On the other hand, they are two ways to get *good_z >= average_z*: I was lucky with the first roll and I got *good_z* OR I wasn't but I rerolled and I got *good_z*:  
 
-   *probability_reroll(z | z >= average_z) = probability_no_reroll(z) + BL x probability_no_reroll(z)*
+   *probability_reroll(good_z | good_z >= average_z) = probability_no_reroll(good_z) + BL x probability_no_reroll(good_z)*
    
-   **probability_reroll(z | z >= average_z) = probability_no_reroll(z) x (1 + BL)**
+   **probability_reroll(good_z | good_z >= average_z) = probability_no_reroll(good_z) x (1 + BL)**
    
 
 And that's it! We have everything needed to built this app. Or at least, here's the theorical tools. If you check the code, you'll see that most of it is the user interface that I built with [Shiny](https://shiny.rstudio.com/), a very handy web application framework for R. It's easy to use and well-documented. I let you check the link if you're interested! 
