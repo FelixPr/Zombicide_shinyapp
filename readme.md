@@ -34,7 +34,7 @@ There are still cases that are a bit more complex. For example, when there is on
 ## Let's do the math
 Do you know [Jacob Bernoulli?](https://en.wikipedia.org/wiki/Jacob_Bernoulli "Check on Wikipedia") He work on our problem in the XVIIe century. No kidding!
 
-Every die-roll is what mathematicians call a [Bernoulli trial](https://en.wikipedia.org/wiki/Bernoulli_trial "Check on Wikipedia"), i.e. a random experiment with two possible outcomes: success or failure. In zombicide, a success means you kill a zombie and it occurs when you get more than the precision of your weapon, or equal. If *precision* is the precision, then the probability of success is given by the number of winning faces *(7-precision)* divided by 6, the total number of faces:
+Every die-roll is what mathematicians call a [Bernoulli trial](https://en.wikipedia.org/wiki/Bernoulli_trial "Check on Wikipedia"), i.e. a random experiment with two possible outcomes: success or failure. In zombicide, a success means you kill a zombie and it occurs when you get more than the precision of your weapon, or equal. The probability of success is given by the number of winning faces *(7-precision)* divided by 6, the total number of faces:
 
    **probability(success) = (7 - precision) / 6**
    
@@ -62,11 +62,11 @@ Let's write *BL = probability_no_reroll(z < average_z)*, where BL stands for Bad
    **probability_reroll(z | z < average_z) = BL x probability_no_reroll(z)**
    
 
-On the other hand, they are two ways to get *good_z >= average_z*: I was lucky with the first roll and got *good_z* OR I wasn't but I rerolled and got *good_z*:  
+On the other hand, they are two ways to get *good_z >= average_z*: I was lucky with the first roll and I got *good_z* OR I wasn't but I rerolled and I got *good_z*:  
 
    *probability_reroll(z | z >= average_z) = probability_no_reroll(z) + BL x probability_no_reroll(z)*
    
    **probability_reroll(z | z >= average_z) = probability_no_reroll(z) x (1 + BL)**
    
 
-And that's it! We have everything needed to built this app. Or at least, here's the theorical tools. If you check the code, you'll see that most of it is the user interface that I built whith [Shiny](https://shiny.rstudio.com/). I let you check that if you're interested! 
+And that's it! We have everything needed to built this app. Or at least, here's the theorical tools. If you check the code, you'll see that most of it is the user interface that I built with [Shiny](https://shiny.rstudio.com/), a very handy web application framework for R. It's easy to use and well-documented. I let you check the link if you're interested! 
