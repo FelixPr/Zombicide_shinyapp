@@ -55,7 +55,7 @@ Then we can easily take into account the maximum number of zombies you can kill.
 
 **Reroll is a bit trickier...** First, we have to define a reroll strategy. Some players tend to reroll often and others hesitate more. As for me, I decided than a smart strategy would be to *reroll everytime the first roll is below average.* First, I compute the probability without reroll and the average killed zombies. That's the first roll.
 Then, I compare the score I got and the average killed zombies. If I'm above, I'm lucky and I keep it. If I'm not, I reroll, and I get another chance to get above average.
-Let's write *BL = probability_no_reroll(z < average_z)*, where BL stands for Bad Luck. If I get *bad_z < average_z* after reroll, it means I wasn't lucky with the first roll AND I got *bad_z* when I rerolled: 
+Let's write **BL = probability_no_reroll(z < average_z)**, where BL stands for Bad Luck. If I get *bad_z < average_z* after reroll, it means I wasn't lucky with the first roll AND I got *bad_z* when I rerolled: 
 
    **probability_reroll(bad_z | bad_z < average_z) = BL x probability_no_reroll(bad_z)**
    
