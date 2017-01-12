@@ -32,39 +32,34 @@ That said, if you want to compare very different attacks, don't forget to includ
 There are still cases that are a bit more complex. For example, when there is only a few zombies in the area, it becomes less interesting to roll a lot of dice and precision becomes more important. No need to say that precision is also very important when you try shooting zombies that are fighting  friends of yours (yes, you can do so in the *Black Plague* version). Another complex situation is when you can reroll... That's why we may need to do the math from time to time.
 
 ## Let's do the math
-Do you know [Jacob Bernoulli?](https://en.wikipedia.org/wiki/Jacob_Bernoulli "Check on Wikipedia") He work on our problem in the XVIIe century. No kidding!
+Do you know [Jacob Bernoulli?](https://en.wikipedia.org/wiki/Jacob_Bernoulli "Check on Wikipedia") He work on our problem in the XVIIth century. No kidding!
 
-Every die-roll is what mathematicians call a [Bernoulli trial](https://en.wikipedia.org/wiki/Bernoulli_trial "Check on Wikipedia"), i.e. a random experiment with two possible outcomes: success or failure. In zombicide, a success means you kill a zombie and it occurs when you get more than the precision of your weapon, or equal. The probability of success is given by the number of winning faces *(7-precision)* divided by 6, the total number of faces: *probability(success) = (7 - precision) / 6*
+Every single die-roll is what mathematicians call a [Bernoulli trial](https://en.wikipedia.org/wiki/Bernoulli_trial "Check on Wikipedia"), i.e. a random experiment with two possible outcomes: success or failure. In zombicide, a success means you kill a zombie and it happens when you get more than the precision of your weapon, or equal. The probability of success is given by the number of winning faces *(7-precision)* divided by 6, the total number of faces: *probability(success) = (7 - precision) / 6*
    
 
 When you roll a few dice, you have what mathematicians call a [Bernoulli process](https://en.wikipedia.org/wiki/Bernoulli_process "Check on Wikipedia"). The probability to get exactly *k* successes among *n* trials with a *p* success probability is:
 
-   **probability(nb_success = k) = B(n, k) x p^k x (1-p)^(n-k)**
-   
-   with B(n, k) standing for the Binomial coefficient: *B(n, k) = n! / ( k! x (n-k)! )*
-   
+-   **probability(nb_success = k) = B(n, k) x p^k x (1-p)^(n-k)**  
+--   where B(n, k) is the Binomial coefficient: *B(n, k) = n! / ( k! x (n-k)! )* 
  
- That said, it's easy to calculate the probability to kill *z* zombies with a *n/pc+* weapon:
- 
-   **probability(killed_zombies = z) = B(n, z) x ((7-pc)/6)^z x ((pc-1)/6)^(n-z)**
-   
+ That said, it's easy to calculate the probability to kill *z* zombies with a *n/pc+* weapon (roll *n* dice and try to get *pc* or more): 
+-   **probability(killed_zombies = z) = B(n, z) x ((7-pc)/6)^z x ((pc-1)/6)^(n-z)** 
    
 This formula gives the height for every bar in the barplot.
 
-Then we can easily take into account the maximum number of zombies you can kill. If you roll *n* dice with *n > max_zombie*, then *probability(killed_zombies = max_zombie) = sum(probability(killed_zombies >= max_zombies)).* No scoop here.
+Then we can easily take into account the maximum number of zombies you can kill. We just need to sum every *probability(killed_zombies >= max_zombies)* to get the new *probability_with_max(killed_zombies = max_zombie).* No scoop here.
 
-**Reroll is a bit trickier...** First, we have to define a reroll strategy. Some players tend to reroll often and others hesitate more. As for me, I decided than a smart strategy would be to *reroll everytime the first roll is below average.* First, I compute the probability without reroll and the average killed zombies. That's the first roll.
-Then, I compare the score I got and the average killed zombies. If I'm above, I'm lucky and I keep it. If I'm not, I reroll, and I get another chance to get above average.
-Let's write **BL = probability_no_reroll(z < average_z)**, where BL stands for Bad Luck. If I get *bad_z < average_z* after reroll, it means I wasn't lucky with the first roll AND I got *bad_z* when I rerolled: 
+**Reroll is a bit trickier...** First, we have to define a reroll strategy. Some players tend to reroll often and others hesitate more. As for me, I decided than a smart strategy would be to *reroll everytime the first roll is below average.* First, I compute the probability without reroll (that's the first roll) and the average killed zombies. Then, I compare the score I got and what I could have expected, i.e. the average killed zombies. If I'm above, I'm lucky and I keep it. If I'm not, I reroll, and I get another chance to get above average.
+Let's write **BL = probability_no_reroll(z < average_z)**, where *BL* stands for Bad Luck and *z* is the number of killed zombies. If I get *bad_z < average_z* after reroll, it means I wasn't lucky with the first roll AND I got *bad_z* when I rerolled: 
 
-   **probability_reroll(bad_z | bad_z < average_z) = BL x probability_no_reroll(bad_z)**
+ -  **probability_reroll(bad_z | bad_z < average_z) = BL x probability_NO_reroll(bad_z)**
    
 
-On the other hand, they are two ways to get *good_z >= average_z*: I was lucky with the first roll and I got *good_z* OR I wasn't but I rerolled and I got *good_z*:  
+On the other hand, they are two ways to get *good_z >= average_z:* I was lucky with the first roll and I got *good_z* OR I wasn't but I rerolled and I got *good_z:*
 
-   *probability_reroll(good_z | good_z >= average_z) = probability_no_reroll(good_z) + BL x probability_no_reroll(good_z)*
+-   *probability_reroll(good_z | good_z >= average_z) = probability_NO_reroll(good_z) + BL x probability_NO_reroll(good_z)*
    
-   **probability_reroll(good_z | good_z >= average_z) = probability_no_reroll(good_z) x (1 + BL)**
+-   **probability_reroll(good_z | good_z >= average_z) = probability_NO_reroll(good_z) x (1 + BL)**
    
 
 And that's it! We have everything needed to built this app. Or at least, here's the theorical tools. If you check the code, you'll see that most of it is the user interface that I built with [Shiny](https://shiny.rstudio.com/), a very handy web application framework for R. It's easy to use and well-documented. I let you check the link if you're interested! 
