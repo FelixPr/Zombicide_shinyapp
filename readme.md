@@ -40,7 +40,7 @@ Every single die-roll is what mathematicians call a [Bernoulli trial](https://en
 When you roll a few dice, you have what mathematicians call a [Bernoulli process](https://en.wikipedia.org/wiki/Bernoulli_process "Check on Wikipedia"). The probability to get exactly *k* successes among *n* trials with a *p* success probability is:
 
 -   **probability(nb_success = k) = B(n, k) x p^k x (1-p)^(n-k)**  
-   *where B(n, k) is the Binomial coefficient: *B(n, k) = n! / ( k! x (n-k)! )* 
+   *where B(n, k) is the Binomial coefficient: B(n, k) = n! / ( k! x (n-k)! )* 
  
 That said, it's easy to calculate the probability to kill *z* zombies with a *n/pc+* weapon (roll *n* dice and try to get *pc* or more): 
 -   **probability(killed_zombies = z) = B(n, z) x ((7-pc)/6)^z x ((pc-1)/6)^(n-z)** 
