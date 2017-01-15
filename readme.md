@@ -1,8 +1,8 @@
 # Zombicide_shinyapp
 A shiny app helping Zombicide players to choose the best equipment:
 
-[Zombicide App in english](https://felixpr.shinyapps.io/Zombicide_app_en/ "https://felixpr.shinyapps.io/Zombicide_app_en/")
-[Zombicide App en français](https://felixpr.shinyapps.io/ZombieApp/ "https://felixpr.shinyapps.io/ZombieApp/")
+- [Zombicide App in english](https://felixpr.shinyapps.io/Zombicide_app_en/ "https://felixpr.shinyapps.io/Zombicide_app_en/")
+- [Zombicide App en français](https://felixpr.shinyapps.io/ZombieApp/ "https://felixpr.shinyapps.io/ZombieApp/")
 
 Here, you'll find a few informations about it:
  - [Intro and mental calculation tricks](https://github.com/FelixPr/Zombicide_shinyapp#do-you-like-board-games)
