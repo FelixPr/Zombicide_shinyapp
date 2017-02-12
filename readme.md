@@ -50,17 +50,17 @@ This formula gives the height for every bar in the barplot.
 
 Then we can easily take into account the maximum number of zombies you can kill. We just need to sum every *probability(killed_zombies >= max_zombies)* to get the new *probability_with_max(killed_zombies = max_zombie).* No scoop here.
 
-**Reroll is a bit trickier...** First, we have to define a reroll strategy. Some players tend to reroll often and others hesitate more. As for me, I decided than a smart strategy would be to *reroll everytime the first roll is below average.* First, I compute the probability without reroll (that's the first roll) and the average killed zombies. Then, I compare the score I got and what I could have expected, i.e. the average killed zombies. If I'm above, I'm lucky and I keep it. If I'm not, I reroll, and I get another chance to get above average.
-Let's write **BL = probability_no_reroll(z < average_z)**, where *BL* stands for *bad luck* and *z* is the number of killed zombies. If I get *bad_z < average_z* after reroll, it means I wasn't lucky with the first roll AND I got *bad_z* when I rerolled: 
+**Reroll is a bit trickier...** First, we have to define a reroll strategy. Some players tend to reroll often and others hesitate more. As for me, I decided than a smart strategy would be to *reroll everytime the first roll is below average.* First, I compute the probability without reroll (that's the first roll) and the average killed zombies. Then, I compare the score I got and what I could have expected, i.e. the average killed zombies. If I'm above, I'm lucky and I keep it. If I'm not, I reroll, and I get another chance to get above average. And if I get the exact average? Well, you can reroll or not, you get the same average after reroll anyway... As for me, I decided to reroll. Notice that this question is relevant only when the average is a natural number, which doesn't happen that often.
+Let's write **BL = probability_no_reroll(z <= average_z)**, where *BL* stands for *bad luck* and *z* is the number of killed zombies. If I get *bad_z <= average_z* after reroll, it means I wasn't lucky with the first roll AND I got *bad_z* when I rerolled: 
 
- -  **probability_reroll(bad_z | bad_z < average_z) = BL \* probability_NO_reroll(bad_z)**
+ -  **probability_reroll(bad_z | bad_z <= average_z) = BL \* probability_NO_reroll(bad_z)**
    
 
-On the other hand, they are two ways to get *good_z >= average_z:* I was lucky with the first roll and I got *good_z* OR I wasn't but I rerolled and I got *good_z:*
+On the other hand, they are two ways to get *good_z > average_z:* I was lucky with the first roll and I got *good_z* OR I wasn't but I rerolled and I got *good_z:*
 
-   *probability_reroll(good_z | good_z >= average_z) = probability_NO_reroll(good_z) + BL x probability_NO_reroll(good_z)*
+   *probability_reroll(good_z | good_z > average_z) = probability_NO_reroll(good_z) + BL x probability_NO_reroll(good_z)*
    
--   **probability_reroll(good_z | good_z >= average_z) = probability_NO_reroll(good_z) \* (1 + BL)**
+-   **probability_reroll(good_z | good_z > average_z) = probability_NO_reroll(good_z) \* (1 + BL)**
    
 
 And that's it! We have everything needed to built this app. Or at least, here are the theorical tools. If you check the code, you'll see that most of it is the user interface that I built with [Shiny](https://shiny.rstudio.com/), a very handy web application framework for R. It's easy to use and well-documented. I let you check the link if you're interested! 
